@@ -3,11 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Todo list</title>
+    <title>Todo List</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
+    <nav>
+        <header>
+            <h1 id="title">Todo-List</h1>
+        </header>
+        <div class="tasks-time-container">
+            <h2>Tasks</h2>
+            <button class="time-button nav-button" id="all-projects">All Tasks</button>
+            <button class="time-button nav-button" id="today">Due Today</button>
+            <button class="time-button nav-button" id="this-week">Due This Week</button>
+        </div>
+        <div class="projects-container">
+            <h2>Projects</h2>
+            <button class="project" id="add-project">
+                Add Project
+                <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14m-7 7V5"/>
+                </svg>
+            </button>
+            <div id="form-container" class="project" style="display: none;">
+                <form>
+                    <label for="project-name">Name: </label>
+                    <input type="text" id="project-name" placeholder="Project Name">
+                    <div>
+                        <button id="create-btn" type="button">Create</button>
+                        <button id="cancel-btn" type="button">Cancel</button>
+                    </div>
+                </form>
+            </div>
+            <ul id="project-list"></ul>
+        </div>
+    </nav>
+    <section id="task-section">
+        <h1>Tasks Not Done</h1>
+        <button id="add-todo" class="project">
+            Add Todo
+            <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14m-7 7V5"/>
+            </svg>
+        </button>
+        <div id="modal" style="display: none;">
+            <form method="post">
+                <h2>Add Todo</h2>
+                <label for="myTitle">Title: </label>
+                <input type="text" id="myTitle" required>
+                <label for="description">Description: </label>
+                <textarea id="description"></textarea>
+                <label for="date">Due Date: </label>
+                <input type="date" id="date">
+                <label for="priority">Priority: </label>
+                <select id="priority" required>
+                    <option value="High">High</option>
+                    <option value="Medium">Medium</option>
+                    <option value="Low">Low</option>
+                </select>
+                <div id="todo-buttons">
+                    <button id="confirm" type="button">Confirm</button>
+                    <button id="cancel" type="button">Cancel</button>
+                </div>
+            </form>
+        </div>
+        <ul id="task-list"></ul>
+    </section>
     <script src="index.js"></script>
 </body>
 </html>

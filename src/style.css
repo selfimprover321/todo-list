@@ -1,0 +1,160 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+* {
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+
+
+nav{
+    display: grid;
+    width: 20vw;
+    grid-template: 1fr repeat(2,3fr) / minmax(200px,1fr);
+    background-color: lightblue;
+    height: 100vh;
+    border-radius: 10px;
+    border: 2px solid black;
+    min-width: fit-content;
+    min-height: fit-content;
+}
+button{
+    background-color: inherit;
+    border: 0;
+    cursor: pointer;
+}
+button:hover{
+    transform: scale(1.1);
+}
+.project{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+.tasks-time-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding-bottom: 30px;
+}
+header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.projects-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+}
+h1{
+    font-size: 32px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: 500;
+    text-decoration: underline;
+}
+.time-button,
+.project{
+    font-size: 20px;
+    padding: 10px;
+    border-radius: 7.5px;
+    border: 2px solid black;}
+.project > button{
+    font-size: 20px;
+}
+h2{
+    font-size: 25px;
+    font-weight: 500;
+    text-decoration: underline;
+}
+h1, h2, h3, h4, h5, h6, p{
+    margin: 0;
+}
+.projects-container{
+    margin-top: 30px;
+}
+#form-container{
+    display: none;
+    flex-wrap: wrap;
+}
+#project-list{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0;
+    gap: 10px;
+}
+input{
+    height: 20px;
+    border-radius: 5px;
+    background-color: inherit;
+}
+body{
+    display: flex;
+}
+#task-section > h1{
+    text-align: center;
+    font-size: 40px;
+}
+#task-section{
+    width: 80vw;
+    min-height: fit-content;
+    height: 100vh;
+    min-width: fit-content;
+}
+#task-section > button{
+    margin: 30px;
+}
+#modal{
+    display: none;
+    align-items: center;
+    flex-direction: column;
+    background-color: white;
+    position: absolute;
+    top: 25%;
+    right: 25%;
+    width: fit-content;
+    height: fit-content;
+    border-radius: 5px;
+    border: 2px solid black;
+    padding: 5px;
+    z-index: 1;
+}
+
+#modal form{
+    display: flex;
+    flex-direction: column;
+}
+#confirm, #cancel{
+    background-color: blue;
+    color: white;
+    border-radius: 10px;
+}
+#todo-buttons{
+    margin-top: 10px;
+}
+#form-container{
+    display: none;
+    flex-direction: column;
+}
+.todo-div{
+    border: 2px solid black;
+    border-radius: 5px;
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    height: min-content;
+}
+.isCompleted{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+.todo-title{
+    font-weight: bold;
+}
