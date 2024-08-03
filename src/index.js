@@ -39,6 +39,7 @@ createBtn.addEventListener("click", () => {
     projectsArray.push(myProject);
     currentProjectIndex = projectsArray.length - 1;
     displayTasks(projectsArray[currentProjectIndex].tasks);
+    saveProjectsToLocalStorage();
   }
 });
 
@@ -80,6 +81,7 @@ confirmTodo.addEventListener("click", () => {
       form.reset();
       modal.style.display = "none";
       displayTasks(projectsArray[currentProjectIndex].tasks);
+      saveProjectsToLocalStorage();
     } else {
       alert("Invalid current project index: " + currentProjectIndex);
     }
@@ -109,6 +111,7 @@ projectList.addEventListener("click", (event) => {
       projectsArray.splice(index, 1);
       projectDiv.remove();
       updateProjectIndices();
+      saveProjectsToLocalStorage();
     } else {
       alert("Invalid project index for deletion: " + index);
     }
@@ -171,6 +174,7 @@ taskList.addEventListener("click", (event) => {
     projectsArray[currentProjectIndex].tasks.splice(dataTaskIndex, 1);
     closestTask.remove();
     updateTodoIndices();
+    saveProjectsToLocalStorage();
   }
   else if(event.target.classList.contains("edit")) {
     dataTaskIndex = parseInt(closestTask.getAttribute("data-task-index"));
@@ -185,6 +189,37 @@ taskList.addEventListener("click", (event) => {
     priority.value = projectsArray[currentProjectIndex].tasks[dataTaskIndex].priority;
     projectsArray[currentProjectIndex].tasks.splice(dataTaskIndex, 1);
     closestTask.remove();
-    updateTodoIndices()
+    updateTodoIndices();
+    saveProjectsToLocalStorage();
   }
 });
+function saveProjectsToLocalStorage(){
+    localStorage.setItem('projects', JSON.stringify(projectsArray));
+}
+function loadProjectsFromLocalStorage(){
+    const storedProjects = localStorage.getItem('projects');
+    if (storedProjects){
+        projectsArray = JSON.parse(storedProjects);
+        projectsArray.forEach((project, index) => {
+            const listItem = document.createElement("div");
+            listItem.classList.add("project");
+            listItem.setAttribute("data-index", index);
+            listItem.innerHTML = `
+      <button class="nav-button go-to-project">${project.name}</button>
+      <button class="nav-button delete-project">
+        <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 7h14m-9 3v8m4-8v8M10 3h4a1 1 0 0 1 1 1v3H9V4a1 1 0 0 1 1-1ZM6 7h12v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7Z"/>
+        </svg>
+      </button>
+    `;
+    projectList.appendChild(listItem);
+                })
+    }
+}
+document.addEventListener("DOMContentLoaded", () => {
+    loadProjectsFromLocalStorage();
+    if (projectsArray.length > 0){
+        currentProjectIndex = 0;
+        displayTasks(projectsArray[currentProjectIndex].tasks);
+    }
+})
